@@ -1,0 +1,72 @@
+(main.py)
+
+from hero import Hero
+
+import time
+
+hero1 = Hero("Adolf", 50, 20, 5, "3rd Reih")
+hero2 = Hero("Stalin", 50, 22, 5, "Red army")
+
+hero1.print_info()
+hero2.print_info()
+
+hero1.print_info()
+time.sleep(2)
+
+hero2.print_info()
+time.sleep(2)
+
+print("Hitler`s 3rd Reih attacking Stalin`s Red army")
+time.sleep(2)
+print(
+  "Stalin`s Red army getting lose at all fronts")
+time.sleep(2)
+
+hero2.strike(hero1)
+time.sleep(2)
+print("Gathers strength and attacks")
+time.sleep(2)
+hero1.strike(hero2)
+time.sleep(2)
+print("Attacks from small accumulations of army")
+time.sleep(2)
+hero2.strike(hero1)
+time.sleep(2)
+print("Approaches to Berlin")
+time.sleep(2)
+print("For 23 days the red army advanced on Berlin")
+time.sleep(2)
+print("On May 8, 1945, the Red army took Berlin and put an end to the 3rd Reih and ended World War 2")
+
+(hero.py)
+
+class Hero():
+  def __init__(self,name,health,power,armor,weapon):
+    self.name = name
+    self.health = health
+    self.power = power
+    self.armor = armor
+    self.weapon = weapon
+
+  def print_info(self):
+    print("New hero")
+    print("Hero name is", self.name)
+    print("Health:", self.health)
+    print("Armor:", self.armor)
+    print("Weapon:", self.weapon)               
+  def strike(self, enemy):
+    print("Hit!", self.name, "attacking", enemy.name)
+    enemy.armor = enemy.armor - self.power
+    if enemy.armor <=0:
+      enemy.health = enemy.health + enemy.armor
+      enemy.armor = 0
+    print(enemy.name, "armor ", enemy.armor, "and health:", enemy.health)
+  def fight(self, enemy):
+    while self.health > 0 or enemy.health >0:
+        self.strike(enemy)
+        if enemy.health <= 0:
+            print(enemy.name, "felt in buttle")
+            break
+        enemy.strike(self)
+        if self.health <= 0:
+            print(self.name, 'felt in battle')
